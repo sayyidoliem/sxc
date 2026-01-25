@@ -14,9 +14,12 @@ import { useEmailJS } from "@/hooks/use-emailjs";
 import { contactInfo } from "./data/contact-info";
 import { socialLinks } from "./data/social-links";
 
+import { usePathname } from "next/navigation";
+
 const ContactModule = () => {
+  const pathName = usePathname();
   const ref = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(ref, { once: true, margin: "100px" });
+  const isInView = useInView(ref, { once: true, margin: pathName == "/contact" ? "700px" : "-100px" });
 
   const [isMapError, setIsMapError] = useState(false);
   const [formData, setFormData] = useState({

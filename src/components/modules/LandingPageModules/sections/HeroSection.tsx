@@ -36,8 +36,8 @@ const HeroSection = () => {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 mt-20"
           >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-primary text-sm font-medium">
+            <Sparkles className="w-4 h-4 text-white/50" />
+            <span className="text-white/50 text-sm font-medium">
               Jakarta Batch 14 • Since 2010
             </span>
           </motion.div>
@@ -64,7 +64,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-white/50 mb-10 max-w-2xl mx-auto"
           >
             Strategic leadership accelerator cultivating Indonesias next
             generation of business leaders. Connecting 1,000+ high-potential
@@ -95,7 +95,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Stats Preview */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -116,7 +116,7 @@ const HeroSection = () => {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 

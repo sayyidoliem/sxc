@@ -5,6 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import { GraduationCap, Building2, Globe, Trophy } from "lucide-react";
+import { testimonials } from "../data/testimonials";
 
 const stats = [
   {
@@ -33,30 +34,6 @@ const stats = [
   },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "StudentsxCEOs gave me the real-world exposure I needed. The mentorship and networking opportunities were invaluable.",
-    author: "Alumni - University of Indonesia",
-    role: "Now at McKinsey & Company",
-    image: "/images/testimonial/alumni1.jpg", 
-  },
-  {
-    quote:
-      "The case-based learning approach prepared me for actual business challenges. It's more than just theory.",
-    author: "Alumni - ITB",
-    role: "Now at Google Indonesia",
-    image: "/images/testimonial/alumni2.jpg",
-  },
-  {
-    quote:
-      "Being part of SxC opened doors I never knew existed. The community is incredibly supportive.",
-    author: "Alumni - UGM",
-    role: "Now Founder of Tech Startup",
-    image: "/images/testimonial/alumni3.jpg",
-  },
-];
-
 const ImpactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -64,7 +41,8 @@ const ImpactSection = () => {
   return (
     <section
       id="impact"
-      className="py-20 md:py-32 bg-secondary relative overflow-hidden">
+      className="py-20 md:py-32 bg-secondary relative overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -83,7 +61,8 @@ const ImpactSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16">
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Our Impact
           </span>
@@ -104,7 +83,8 @@ const ImpactSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center p-6 rounded-2xl bg-secondary-foreground/5 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-colors">
+              className="text-center p-6 rounded-2xl bg-secondary-foreground/5 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-colors"
+            >
               <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center">
                 <stat.icon className="w-7 h-7 text-primary" />
               </div>
@@ -114,46 +94,43 @@ const ImpactSection = () => {
               <div className="text-secondary-foreground font-semibold mb-1">
                 {stat.label}
               </div>
-              <div className="text-sm text-white/50">
-                {stat.description}
-              </div>
+              <div className="text-sm text-white/50">{stat.description}</div>
             </motion.div>
           ))}
         </div>
 
         {/* Testimonials */}
         <div className="grid md:grid-cols-3 gap-6">
-  {testimonials.map((testimonial, index) => (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-      className="p-6 rounded-2xl bg-card border border-border flex flex-col items-center text-center"
-    >
-      <div className="w-16 h-16 mb-4 rounded-full overflow-hidden">
-        <Image
-          src={testimonial.image}
-          alt={testimonial.author}
-          width={64}
-          height={64}
-          className="object-cover"
-        />
-      </div>
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+              className="p-6 rounded-2xl bg-card border border-border flex flex-col items-center text-center"
+            >
+              <div className="w-16 h-16 mb-4 rounded-full overflow-hidden">
+                <Image
+                  src={testimonial.imageSrc}
+                  alt={testimonial.author}
+                  width={64}
+                  height={64}
+                  style={{ objectFit: "cover" }} // pastikan menutupi area bulat
+                  className="w-full h-full"
+                />
+              </div>
 
-      <div className="text-primary text-4xl mb-4">`&quot;`</div>
-      <p className="text-foreground mb-4 italic">{testimonial.quote}</p>
-      
-      <div>
-        <div className="text-sm font-semibold text-foreground">
-          {testimonial.author}
+              <p className="text-foreground mb-4 italic">{testimonial.quote}</p>
+
+              <div>
+                <div className="text-sm font-semibold text-foreground">
+                  {testimonial.author}
+                </div>
+                <div className="text-sm text-primary">{testimonial.role}</div>
+              </div>
+            </motion.div>
+          ))}
         </div>
-        <div className="text-sm text-primary">{testimonial.role}</div>
-      </div>
-    </motion.div>
-  ))}
-</div>
-
       </div>
     </section>
   );

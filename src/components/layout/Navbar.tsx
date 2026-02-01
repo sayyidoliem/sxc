@@ -18,6 +18,7 @@ const navLinks = [
 
 const Navbar = () => {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
@@ -68,13 +69,25 @@ const Navbar = () => {
             />
             <div className="sm:block ml-8">
               <span
-                className={`font-bold ${isScrolled ? "text-secondary" : "text-primary-foreground"}`}
+                className={`font-bold ${
+                  isHome
+                    ? isScrolled
+                      ? "text-secondary"
+                      : "text-white"
+                    : "text-secondary" 
+                }`}
               >
                 Students
               </span>
               <span className="text-primary font-bold">x</span>
               <span
-                className={`font-bold ${isScrolled ? "text-secondary" : "text-primary-foreground"}`}
+                className={`font-bold ${
+                  isHome
+                    ? isScrolled
+                      ? "text-secondary"
+                      : "text-white"
+                    : "text-secondary"
+                }`}
               >
                 CEOs
               </span>
@@ -91,12 +104,12 @@ const Navbar = () => {
                   href={link.href}
                   className={`group relative font-medium transition-colors ${
                     isActive
-                      ? isScrolled
-                        ? "text-primary"
-                        : "text-white"
-                      : isScrolled
-                        ? "text-muted-foreground hover:text-primary"
-                        : "text-white/80 hover:text-white"
+                      ? "text-primary"
+                      : isHome
+                        ? isScrolled
+                          ? "text-muted-foreground hover:text-primary"
+                          : "text-white/80 hover:text-white"
+                        : "text-muted-foreground hover:text-primary" 
                   }`}
                 >
                   {link.name}

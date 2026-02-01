@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { GraduationCap, Building2, Globe, Trophy } from "lucide-react";
 
 const stats = [
@@ -38,18 +39,21 @@ const testimonials = [
       "StudentsxCEOs gave me the real-world exposure I needed. The mentorship and networking opportunities were invaluable.",
     author: "Alumni - University of Indonesia",
     role: "Now at McKinsey & Company",
+    image: "/images/testimonial/alumni1.jpg", 
   },
   {
     quote:
       "The case-based learning approach prepared me for actual business challenges. It's more than just theory.",
     author: "Alumni - ITB",
     role: "Now at Google Indonesia",
+    image: "/images/testimonial/alumni2.jpg",
   },
   {
     quote:
       "Being part of SxC opened doors I never knew existed. The community is incredibly supportive.",
     author: "Alumni - UGM",
     role: "Now Founder of Tech Startup",
+    image: "/images/testimonial/alumni3.jpg",
   },
 ];
 
@@ -86,7 +90,7 @@ const ImpactSection = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-foreground mt-3 mb-6">
             Measurable <span className="text-primary">Results</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-white/80 text-lg">
             Real numbers that demonstrate our commitment to developing future
             leaders.
           </p>
@@ -110,7 +114,7 @@ const ImpactSection = () => {
               <div className="text-secondary-foreground font-semibold mb-1">
                 {stat.label}
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm text-white/50">
                 {stat.description}
               </div>
             </motion.div>
@@ -118,35 +122,38 @@ const ImpactSection = () => {
         </div>
 
         {/* Testimonials */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}>
-          <h3 className="text-2xl font-bold text-secondary-foreground text-center mb-10">
-            What Our Alumni Say
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="p-6 rounded-2xl bg-card border border-border">
-                <div className="text-primary text-4xl mb-4">`&quot;`</div>
-                <p className="text-foreground mb-6 italic">
-                  {testimonial.quote}
-                </p>
-                <div>
-                  <div className="text-sm font-semibold text-foreground">
-                    {testimonial.author}
-                  </div>
-                  <div className="text-sm text-primary">{testimonial.role}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="grid md:grid-cols-3 gap-6">
+  {testimonials.map((testimonial, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+      className="p-6 rounded-2xl bg-card border border-border flex flex-col items-center text-center"
+    >
+      <div className="w-16 h-16 mb-4 rounded-full overflow-hidden">
+        <Image
+          src={testimonial.image}
+          alt={testimonial.author}
+          width={64}
+          height={64}
+          className="object-cover"
+        />
+      </div>
+
+      <div className="text-primary text-4xl mb-4">`&quot;`</div>
+      <p className="text-foreground mb-4 italic">{testimonial.quote}</p>
+      
+      <div>
+        <div className="text-sm font-semibold text-foreground">
+          {testimonial.author}
+        </div>
+        <div className="text-sm text-primary">{testimonial.role}</div>
+      </div>
+    </motion.div>
+  ))}
+</div>
+
       </div>
     </section>
   );

@@ -19,8 +19,7 @@ export const ProgramModule = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
+          className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Our Programs
           </span>
@@ -59,18 +58,6 @@ export const ProgramModule = () => {
                     <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                       {program.title}
                     </h3>
-
-                    {/* Tags/Features */}
-                    <div className="flex flex-wrap gap-3 mb-5">
-                      {program.features &&
-                        program.features.map((feature, i) => (
-                          <span
-                            key={i}
-                            className="px-4 py-2 text-sm md:text-base bg-primary/10 text-primary rounded-full font-medium hover:bg-primary/20 transition-colors">
-                            {feature}
-                          </span>
-                        ))}
-                    </div>
 
                     {/* Description */}
                     <p className="text-muted-foreground text-base md:text-lg leading-relaxed">

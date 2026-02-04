@@ -85,9 +85,9 @@ const ProgramsSection = () => {
                   2. lg:min-h-[520px] untuk desktop agar tetap konsisten.
                   3. Flex-col di mobile dan flex-row di desktop.
                 */}
-                <div className="group flex flex-col lg:flex-row bg-[#0a0a0a] border border-white/5 overflow-hidden min-h-[600px] lg:min-h-[520px] h-full shadow-2xl items-stretch">
+                <div className="group flex flex-col lg:flex-row bg-[#0a0a0a] border border-white/5 overflow-hidden min-h-150 lg:min-h-130 h-full shadow-2xl items-stretch">
                   {/* Sisi Atas/Kiri: Gambar */}
-                  <div className="relative w-full lg:w-1/2 h-[250px] lg:h-auto overflow-hidden shrink-0">
+                  <div className="relative w-full lg:w-1/2 h-62.5 lg:h-auto overflow-hidden shrink-0">
                     <div className="absolute top-6 left-6 z-20 bg-primary px-5 py-1.5 text-white text-[10px] font-black uppercase tracking-[0.2em]">
                       {program.month}
                     </div>
@@ -103,7 +103,7 @@ const ProgramsSection = () => {
                   </div>
 
                   {/* Sisi Bawah/Kanan: Konten */}
-                  <div className="flex flex-col justify-between p-6 md:p-8 lg:p-14 w-full lg:w-1/2 text-white flex-grow">
+                  <div className="flex flex-col justify-between p-6 md:p-8 lg:p-14 w-full lg:w-1/2 text-white grow">
                     <div className="space-y-4 lg:space-y-6">
                       <div className="flex items-center gap-4">
                         <div className="p-2.5 rounded-lg bg-white/5 border border-white/10">

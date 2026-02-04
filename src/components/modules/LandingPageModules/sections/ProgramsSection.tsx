@@ -45,7 +45,11 @@ const ProgramsSection = () => {
   const toggleAutoplay = useCallback(() => {
     const autoplay = emblaApi?.plugins()?.autoplay;
     if (!autoplay) return;
-    isPlaying ? autoplay.stop() : autoplay.play();
+    if (isPlaying) {
+      autoplay.stop();
+    } else {
+      autoplay.play();
+    }
     setIsPlaying(!isPlaying);
   }, [emblaApi, isPlaying]);
 

@@ -5,7 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { programs } from "./program_data";
+import { programs } from "./data/program_data";
 import ChatbotFAB from "../ChatbotModule";
 import BackToTopButton from "../LandingPageModules/sections/BackToTopButton";
 
@@ -49,9 +49,9 @@ export const ProgramModule = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group flex flex-row bg-white border border-gray-200 overflow-hidden rounded-md shadow-2xl hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+                className="group flex flex-col md:flex-row bg-white border border-gray-200 overflow-hidden rounded-md shadow-2xl hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
                 {/* Image Section */}
-                <div className="relative w-1/3 h-auto min-h-100 overflow-hidden bg-black/30 shrink-0">
+                <div className="relative w-full md:w-1/3 h-62.5 md:h-auto md:min-h-100 overflow-hidden bg-black/30 md:shrink-0">
                   <div className="absolute top-4 left-4 z-20 bg-primary px-4 py-1.5 text-white text-[10px] font-black uppercase tracking-[0.15em] rounded-md">
                     {program.month}
                   </div>

@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { programs } from "./const";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { programs } from "./program_data";
 import ChatbotFAB from "../ChatbotModule";
 import BackToTopButton from "../LandingPageModules/sections/BackToTopButton";
 
@@ -20,8 +22,7 @@ export const ProgramModule = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
+          className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Our Programs
           </span>
@@ -34,49 +35,68 @@ export const ProgramModule = () => {
           </p>
         </motion.div>
 
-        {/* Programs List - Horizontal Layout */}
-        <div className="max-w-6xl mx-auto space-y-8">
+        {/* Programs Grid */}
+        <div className="max-w-7xl mx-auto grid gap-8 mb-16">
           {programs.map((program, index) => {
             const Icon = program.icon;
             return (
               <motion.div
                 key={program.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-card rounded-3xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-2xl">
-                <div className="flex flex-col md:flex-row gap-0 md:gap-0 h-full">
-                  {/* Left: Icon/Logo Placeholder */}
-                  <div className="shrink-0 w-full md:w-60 h-64 md:h-auto">
-                    <div
-                      className={`w-full h-full rounded-3xl md:rounded-none bg-linear-to-br ${program.color} flex items-center justify-center group-hover:scale-105 transition-transform`}>
-                      <Icon className="w-20 h-20 md:w-24 md:h-24 text-white" />
-                    </div>
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group flex flex-row bg-white border border-gray-200 overflow-hidden rounded-md shadow-2xl hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+                {/* Image Section */}
+                <div className="relative w-1/3 h-auto min-h-100 overflow-hidden bg-black/30 shrink-0">
+                  <div className="absolute top-4 left-4 z-20 bg-primary px-4 py-1.5 text-white text-[10px] font-black uppercase tracking-[0.15em] rounded-md">
+                    {program.month}
                   </div>
 
-                  {/* Right: Content */}
-                  <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
-                    {/* Title */}
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {program.title}
-                    </h3>
+                  <Image
+                    src={program.image}
+                    alt={program.title}
+                    fill
+                    className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                </div>
 
-                    {/* Tags/Features */}
-                    <div className="flex flex-wrap gap-3 mb-5">
-                      {program.features &&
-                        program.features.map((feature, i) => (
-                          <span
-                            key={i}
-                            className="px-4 py-2 text-sm md:text-base bg-primary/10 text-primary rounded-full font-medium hover:bg-primary/20 transition-colors">
-                            {feature}
-                          </span>
-                        ))}
+                {/* Content Section */}
+                <div className="flex flex-col flex-1 p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-lg bg-primary/10 border border-primary/20">
+                      <Icon className="w-5 h-5 text-primary" />
                     </div>
+                    <div className="h-px flex-1 bg-gray-200" />
+                  </div>
 
-                    {/* Description */}
-                    <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                      {program.description}
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight">
+                    {program.title}
+                  </h3>
+
+                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-5 flex-1 font-light">
+                    {program.description}
+                  </p>
+
+                  <div className="pt-4 border-t border-gray-200">
+                    <p className="text-[9px] uppercase tracking-[0.2em] text-primary font-black mb-2">
+                      Target Audience
                     </p>
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-5">
+                      {program.targetAudience}
+                    </p>
+
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSfezJ4fESoXGCyr1UXkG1gqIif6f2ZylEfuNm2IPkNctmD_lQ/viewform?usp=dialog"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:text-white transition-colors group/btn">
+                      Join Program
+                      <div className="relative flex h-8 w-8 items-center justify-center bg-primary transition-all duration-300 group-hover/btn:w-10 rounded-sm">
+                        <ArrowRight className="h-3 w-3 text-white" />
+                      </div>
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -85,8 +105,7 @@ export const ProgramModule = () => {
         </div>
       </div>
       <ChatbotFAB />
-      <BackToTopButton/>
-
+      <BackToTopButton />
     </section>
   );
 };

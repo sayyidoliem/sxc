@@ -144,7 +144,11 @@ const Navbar = () => {
             </Button> */}
             <button
               className={`p-2 transition-colors cursor-pointer ${
-                isAbout || isContact || isProgram || isPartnership ? "text-foreground" : isScrolled ? "text-foreground" : "text-white"
+                isAbout || isContact || isProgram || isPartnership
+                  ? "text-foreground"
+                  : isScrolled
+                    ? "text-foreground"
+                    : "text-white"
               }`}
               onClick={() => setIsMobileOpen(!isMobileOpen)}>
               {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -168,13 +172,20 @@ const Navbar = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className={`py-2 transition-colors ${
+                    className={`group relative inline-block w-fit py-2 transition-all duration-300 ${
                       isActive
                         ? "text-blue-500"
-                        : "text-foreground hover:text-primary"
+                        : "text-foreground hover:text-blue-500"
                     }`}
                     onClick={() => setIsMobileOpen(false)}>
                     {link.name}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-blue-500 origin-center transition-transform duration-300 ease-out ${
+                        isActive
+                          ? "scale-x-100"
+                          : "scale-x-0 group-hover:scale-x-100"
+                      }`}
+                    />
                   </a>
                 );
               })}

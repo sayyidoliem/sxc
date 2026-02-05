@@ -61,7 +61,7 @@ const ImpactSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent font-semibold text-sm uppercase tracking-wider">
+          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Our Impact
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-foreground mt-3 mb-6">
@@ -105,7 +105,7 @@ const ImpactSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent font-semibold text-sm uppercase tracking-wider">
+          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Success Stories
           </span>
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-foreground mt-2">
